@@ -24,63 +24,54 @@ const ArticleCard = ({
   onClick
 }: ArticleCardProps) => {
   return (
-    <div 
-      className={`cursor-pointer hover:shadow-lg transition-shadow vintage-border aged-paper p-4 ${
+    <Card 
+      className={`cursor-pointer hover:shadow-lg transition-shadow ${
         featured ? "md:col-span-2 md:row-span-2" : ""
       }`}
       onClick={onClick}
     >
-      {/* Article header with category badge */}
-      <div className="flex items-start justify-between mb-2">
-        <Badge variant="secondary" className="uppercase text-xs font-bold bg-primary text-primary-foreground px-2 py-1">
-          {category}
-        </Badge>
-        {featured && (
-          <Badge variant="outline" className="uppercase text-xs font-bold vintage-border">
-            Featured
-          </Badge>
-        )}
-      </div>
-
       {imageUrl && (
-        <div className={`relative overflow-hidden mb-3 vintage-border ${featured ? "h-64" : "h-32"}`}>
+        <div className={`relative overflow-hidden ${featured ? "h-64" : "h-48"}`}>
           <img
             src={imageUrl}
             alt={title}
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
+          <div className="absolute top-4 left-4">
+            <Badge variant="secondary">{category}</Badge>
+          </div>
         </div>
       )}
       
-      <div className="space-y-3">
-        <h3 className={`newspaper-header leading-tight hover:text-primary transition-colors ${
-          featured ? "text-3xl" : "text-xl"
+      <CardHeader className="pb-2">
+        <h3 className={`font-bold leading-tight hover:text-primary transition-colors ${
+          featured ? "text-2xl" : "text-lg"
         }`}>
           {title}
         </h3>
+      </CardHeader>
+      
+      <CardContent className="pt-0">
+        <p className={`text-muted-foreground mb-4 ${
+          featured ? "text-base" : "text-sm"
+        }`}>
+          {excerpt}
+        </p>
         
-        <div className="border-l-2 border-primary pl-3">
-          <p className={`newspaper-body text-foreground ${
-            featured ? "text-base" : "text-sm"
-          }`}>
-            {excerpt}
-          </p>
-        </div>
-        
-        <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-dotted border-muted-foreground pt-2">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <User className="h-3 w-3" />
-              <span className="font-medium uppercase tracking-wide">{author}</span>
+              <span>{author}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Clock className="h-3 w-3" />
-              <span className="uppercase tracking-wide">{publishedAt}</span>
+              <span>{publishedAt}</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
