@@ -8,48 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Vintage newspaper colors */
-    --background: 42 25% 88%; /* Aged paper cream */
-    --foreground: 30 15% 15%; /* Dark brown for text */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 40 25% 92%; /* Slightly lighter aged paper */
-    --card-foreground: 30 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 40 25% 92%;
-    --popover-foreground: 30 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 25 30% 25%; /* Dark vintage brown */
-    --primary-foreground: 42 25% 88%;
+    --primary: 220 13% 18%; /* Deep navy for journalism professionalism */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 35 20% 75%; /* Muted vintage beige */
-    --secondary-foreground: 30 15% 15%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 38 22% 85%; /* Light vintage tone */
-    --muted-foreground: 30 12% 35%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 35 20% 75%;
-    --accent-foreground: 30 15% 15%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 65% 45%; /* Vintage red */
-    --destructive-foreground: 42 25% 88%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 35 15% 65%; /* Vintage border */
-    --input: 35 15% 65%;
-    --ring: 25 30% 25%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 220 13% 18%;
 
-    --radius: 0.2rem; /* Sharper corners for newspaper feel */
+    --radius: 0.5rem;
     
-    /* Vintage newspaper design tokens */
-    --newspaper-header: 25 30% 25%;
-    --newspaper-accent: 20 40% 35%;
-    --vintage-border: 30 15% 45%;
-    --aged-paper: 42 25% 88%;
-    --ink-black: 30 15% 15%;
-    
-    /* Newspaper textures and effects */
-    --paper-texture: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    --shadow-vintage: 0 2px 8px hsl(30 15% 15% / 0.15);
-    --transition-newspaper: all 0.2s ease;
+    /* Journalism-specific design tokens */
+    --news-primary: 220 13% 18%;
+    --news-accent: 210 100% 50%;
+    --breaking-news: 0 84.2% 60.2%;
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(220 13% 28%));
+    --shadow-card: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -114,41 +109,5 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    background-image: var(--paper-texture);
-    font-family: 'Times New Roman', serif;
-  }
-  
-  /* Newspaper typography styles */
-  .newspaper-header {
-    font-family: 'Times New Roman', serif;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    text-shadow: 1px 1px 2px hsl(30 15% 15% / 0.3);
-  }
-  
-  .newspaper-body {
-    font-family: 'Times New Roman', serif;
-    line-height: 1.6;
-    text-align: justify;
-    hyphens: auto;
-  }
-  
-  .newspaper-column {
-    column-gap: 1.5rem;
-    column-rule: 1px solid hsl(var(--vintage-border));
-  }
-  
-  .vintage-border {
-    border: 2px solid hsl(var(--vintage-border));
-    box-shadow: inset 0 0 0 1px hsl(var(--vintage-border) / 0.3);
-  }
-  
-  .aged-paper {
-    background: linear-gradient(45deg, 
-      hsl(var(--aged-paper)) 0%, 
-      hsl(42 25% 90%) 25%, 
-      hsl(var(--aged-paper)) 50%, 
-      hsl(42 25% 86%) 75%, 
-      hsl(var(--aged-paper)) 100%);
   }
 }

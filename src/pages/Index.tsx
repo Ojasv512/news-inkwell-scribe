@@ -70,114 +70,70 @@ const Index = () => {
   const trendingTopics = ["Climate Change", "AI Ethics", "Olympic Games", "Space Exploration", "Healthcare Innovation"];
 
   return (
-    <div className="min-h-screen bg-background aged-paper">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-8">
         {/* Breaking News Banner */}
-        <div className="vintage-border bg-destructive text-destructive-foreground px-4 py-3 mb-6">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="border-2 border-destructive-foreground px-2 py-1">
-              <span className="text-xs font-bold uppercase tracking-widest">BREAKING NEWS</span>
-            </div>
-            <p className="text-sm font-bold newspaper-body text-center">
+        <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-md mb-8">
+          <div className="flex items-center space-x-2">
+            <Badge variant="outline" className="border-destructive-foreground text-destructive-foreground">
+              BREAKING
+            </Badge>
+            <p className="text-sm font-medium">
               International climate summit reaches historic agreement - Full coverage inside
             </p>
           </div>
         </div>
 
-        {/* Main News Section */}
-        <section className="mb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Featured Article - Newspaper style */}
-            <div className="lg:col-span-3">
-              <div className="vintage-border aged-paper p-6">
-                <div className="flex items-center justify-between mb-4 border-b-2 border-double border-primary pb-2">
-                  <Badge variant="secondary" className="uppercase text-xs font-bold bg-primary text-primary-foreground">
-                    {featuredArticle.category}
-                  </Badge>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                    {featuredArticle.publishedAt}
-                  </div>
-                </div>
-                
-                <h1 className="newspaper-header text-4xl md:text-6xl leading-tight mb-4 text-primary">
-                  {featuredArticle.title}
-                </h1>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="newspaper-column" style={{ columnCount: 1 }}>
-                    <p className="newspaper-body text-lg leading-relaxed mb-4 first-letter:text-6xl first-letter:font-bold first-letter:mr-2 first-letter:float-left first-letter:leading-none">
-                      {featuredArticle.excerpt}
-                    </p>
-                    <div className="flex items-center space-x-4 text-sm text-muted-foreground border-t border-dotted border-muted-foreground pt-3">
-                      <span className="font-bold uppercase tracking-wide">By {featuredArticle.author}</span>
-                      <span className="italic">Herald Staff Writer</span>
-                    </div>
-                  </div>
-                  
-                  {featuredArticle.imageUrl && (
-                    <div className="vintage-border">
-                      <img
-                        src={featuredArticle.imageUrl}
-                        alt={featuredArticle.title}
-                        className="w-full h-64 object-cover grayscale"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
+        {/* Hero Section */}
+        <section className="mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Featured Article */}
+            <div className="lg:col-span-2">
+              <ArticleCard
+                {...featuredArticle}
+                featured
+                onClick={() => console.log("Navigate to article", featuredArticle.id)}
+              />
             </div>
 
-            {/* Sidebar with Trending & Info */}
+            {/* Trending Topics */}
             <div className="space-y-6">
-              {/* Trending Topics */}
-              <div className="vintage-border aged-paper p-4">
-                <div className="border-b-2 border-double border-primary pb-2 mb-4">
-                  <h2 className="newspaper-header text-xl text-primary flex items-center">
-                    <TrendingUp className="h-5 w-5 mr-2" />
-                    TRENDING NOW
-                  </h2>
+              <div>
+                <div className="flex items-center space-x-2 mb-4">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <h2 className="text-xl font-bold">Trending Now</h2>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {trendingTopics.map((topic, index) => (
                     <div
                       key={topic}
-                      className="flex items-start space-x-3 py-2 border-b border-dotted border-muted-foreground last:border-0 cursor-pointer hover:bg-muted/50 transition-colors"
+                      className="flex items-center space-x-3 p-3 hover:bg-muted rounded-md cursor-pointer transition-colors"
                     >
-                      <span className="text-2xl font-bold text-primary newspaper-header min-w-[2rem]">
+                      <span className="text-2xl font-bold text-muted-foreground">
                         {index + 1}
                       </span>
-                      <span className="text-sm font-bold uppercase tracking-wide newspaper-body">{topic}</span>
+                      <span className="text-sm font-medium">{topic}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Weather & Info Box */}
-              <div className="vintage-border aged-paper p-4">
-                <h3 className="newspaper-header text-lg border-b-2 border-double border-primary pb-2 mb-4">TODAY'S WEATHER</h3>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">72°F</div>
-                  <div className="text-sm text-muted-foreground uppercase tracking-wide">Partly Cloudy</div>
-                  <div className="text-xs text-muted-foreground mt-2">High: 78° | Low: 65°</div>
-                </div>
-              </div>
-
               {/* Newsletter Signup */}
-              <div className="vintage-border aged-paper p-4">
-                <h3 className="newspaper-header text-lg border-b-2 border-double border-primary pb-2 mb-4">SUBSCRIBE</h3>
-                <p className="text-sm newspaper-body mb-4">
-                  Receive our daily edition delivered to your doorstep.
+              <div className="bg-muted p-6 rounded-lg">
+                <h3 className="text-lg font-bold mb-2">Stay Informed</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Get our daily newsletter with the most important stories.
                 </p>
                 <div className="space-y-3">
                   <input
                     type="email"
-                    placeholder="Enter your address"
-                    className="w-full px-3 py-2 text-sm vintage-border focus:outline-none focus:ring-2 focus:ring-primary bg-background"
+                    placeholder="Enter your email"
+                    className="w-full px-3 py-2 text-sm border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                   />
-                  <Button className="w-full vintage-border newspaper-header text-xs uppercase tracking-widest" size="sm">
-                    Subscribe Today
+                  <Button className="w-full" size="sm">
+                    Subscribe
                   </Button>
                 </div>
               </div>
@@ -185,34 +141,24 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Newspaper divider */}
-        <div className="border-t-4 border-double border-primary my-8">
-          <div className="bg-primary text-primary-foreground text-center py-2">
-            <span className="newspaper-header text-sm uppercase tracking-widest">Latest News & Reports</span>
-          </div>
-        </div>
+        <Separator className="mb-12" />
 
-        {/* Latest News in newspaper columns */}
+        {/* Latest News */}
         <section>
-          <div className="vintage-border aged-paper p-6">
-            <h2 className="newspaper-header text-4xl text-primary text-center border-b-2 border-double border-primary pb-4 mb-8">
-              DAILY HEADLINES
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article) => (
-                <ArticleCard
-                  key={article.id}
-                  {...article}
-                  onClick={() => console.log("Navigate to article", article.id)}
-                />
-              ))}
-            </div>
+          <h2 className="text-3xl font-bold mb-8">Latest News</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map((article) => (
+              <ArticleCard
+                key={article.id}
+                {...article}
+                onClick={() => console.log("Navigate to article", article.id)}
+              />
+            ))}
           </div>
           
           <div className="text-center mt-8">
-            <Button variant="outline" size="lg" className="vintage-border newspaper-header uppercase tracking-widest">
-              Read More Stories
+            <Button variant="outline" size="lg">
+              Load More Articles
             </Button>
           </div>
         </section>
